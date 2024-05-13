@@ -7,7 +7,7 @@ module.exports = {
     new SlashCommandBuilder()
       .setName("xp")
       .setDescription("Gibt XP Informationen zurück.")
-      .setDefaultPermission(true),
+      .setDefaultPermission(false),
     new SlashCommandBuilder()
       .setName("xp")
       .setDescription("Adjust a user´s xp.")
