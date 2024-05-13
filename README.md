@@ -7,3 +7,5 @@ npm install -g nodemon
 use nodemon in terminal to start the Bot
 
 npm i dotenv 
+
+safe commands with "node src/register-commands.js"
