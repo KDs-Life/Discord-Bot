@@ -26,13 +26,4 @@ client.on("interactionCreate", (interaction) => {
   }
 });
 
-// client.on("messageCreate", (message) => {
-//   if (message.author.bot) {
-//     return;
-//   }
-//   if (message.content === "Hello") {
-//     message.reply("Hello");
-//   }
-// });
-
 client.login(process.env.TOKEN);
