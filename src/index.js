@@ -1,4 +1,3 @@
-
 require("dotenv").config();
 const { Client, IntentsBitField } = require("discord.js");
 
@@ -26,7 +25,5 @@ client.on("interactionCreate", (interaction) => {
     interaction.reply("Pong!!");
   }
 });
-
-
 
 client.login(process.env.TOKEN);

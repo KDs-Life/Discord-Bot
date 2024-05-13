@@ -1,15 +1,13 @@
 require("dotenv").config();
 const { REST, Routes } = require("discord.js");
 
+const xpCommand = require("./Levels/xp.js");
+
 const commands = [
   {
-    name: "hey",
-    description: "Replies with hey!",
+ 
   },
-  {
-    name: "ping",
-    description: "Pong!",
-  },
+  xpCommand.data,
 ];
 
 const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);

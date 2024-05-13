@@ -1,7 +1,7 @@
 {
   "name": "discord-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "install nodemon and npm\r npm init -y\r npm install discord.js\r inside the Package.json --> Main: src/index.js\r npm install -g nodemon\r use nodemon in terminal to start the Bot",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.14.1",
+    "@discordjs/builders": "^1.8.1",
+    "discord.js": "^14.15.2",
+    "discord.js-leveling": "^5.4.0",
     "dotenv": "^16.4.5"
   }
 }
