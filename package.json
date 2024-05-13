@@ -14,5 +14,8 @@
     "discord.js": "^14.15.2",
     "discord.js-leveling": "^5.4.0",
     "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

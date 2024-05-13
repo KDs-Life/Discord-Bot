@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { EmbedBuilder, PermissionFlagsBits } = require("@discordjs/builders");
+const { PermissionFlagsBits } = require("discord-api-types/v10");
 const Levels = require("discord.js-leveling");
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
     new SlashCommandBuilder()
       .setName("xp")
       .setDescription("Gibt XP Informationen zurück.")
-      .setDefaultPermission(false),
+      .setDefaultPermission(true),
     new SlashCommandBuilder()
       .setName("xp")
       .setDescription("Adjust a user´s xp.")
@@ -98,8 +98,8 @@ module.exports = {
             .setTimestamp();
           break;
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error('Ein Fehler ist aufgetreten:', error);
     }
 
     interaction.reply({ embed, ephemeral: true });
