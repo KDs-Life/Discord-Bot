@@ -2,8 +2,14 @@ require("dotenv").config();
 const { REST, Routes } = require("discord.js");
 
 const xpCommand = require("./Levels/xp.js");
+const levelCommand = require("./Levels/level.js");
+const howmuchxpCommand = require("./Levels/howmuchxp.js");
 
-const commands = [{}, xpCommand.data];
+const commands = [
+  xpCommand(),
+  levelCommand(),
+  howmuchxpCommand(),
+];
 
 const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
@@ -18,8 +24,8 @@ const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
       { body: commands }
     );
 
-    console.log("Slash commands were registrede successfully");
+    console.log("Slash commands were registered successfully");
   } catch (error) {
-    console.log("There was an error: ${error}");
+    console.log(`There was an error: ${error}`);
   }
 })();
