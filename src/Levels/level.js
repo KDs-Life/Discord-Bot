@@ -1,15 +1,10 @@
-const {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  PermissionFlagsBits,
-} = require("@discordjs/builders");
-
+const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const Levels = require("discord.js-leveling");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("level")
-    .setDescription("Adjust a user´s levels.")
+    .setDescription("Adjust a user's levels.")
     .setDefaultMemberPermissions(PermissionFlagsBits.ADMINISTRATOR)
     .addSubcommand((subcommand) =>
       subcommand
@@ -50,7 +45,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("set")
-        .setDescription("Set a user´s levels.")
+        .setDescription("Set a user's levels.")
         .addUserOption((option) =>
           option
             .setName("target")
@@ -93,15 +88,19 @@ module.exports = {
         case "set":
           await Levels.setXp(guildId, target.id, amount);
           embed
-            .setDescription(`Set ${target}´s level(s) to ${amount}`)
+            .setDescription(`Set ${target}'s level(s) to ${amount}`)
             .setColor("GREEN")
             .setTimestamp();
           break;
       }
     } catch (err) {
       console.log(err);
+      embed
+        .setDescription("There was an error executing this command.")
+        .setColor("RED")
+        .setTimestamp();
     }
 
-    interaction.reply({ embed, ephemeral: true });
+    interaction.reply({ embeds: [embed], ephemeral: true });
   },
 };

@@ -1,70 +1,67 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { PermissionFlagsBits } = require("discord-api-types/v10");
+const {
+  SlashCommandBuilder,
+  PermissionFlagsBits,
+  EmbedBuilder,
+} = require("discord.js");
 const Levels = require("discord.js-leveling");
 
 module.exports = {
-  data: [
-    new SlashCommandBuilder()
-      .setName("xp")
-      .setDescription("Gibt XP Informationen zurück.")
-      .setDefaultPermission(false),
-    new SlashCommandBuilder()
-      .setName("xp")
-      .setDescription("Adjust a user´s xp.")
-      .setDefaultMemberPermissions(PermissionFlagsBits.ADMINISTRATOR)
-      .addSubcommand((subcommand) =>
-        subcommand
-          .setName("add")
-          .setDescription("Add xp to a user.")
-          .addUserOption((option) =>
-            option
-              .setName("target")
-              .setDescription("The user to add xp to.")
-              .setRequired(true)
-          )
-          .addIntegerOption((option) =>
-            option
-              .setName("amount")
-              .setDescription("The amount of xp to add.")
-              .setRequired(true)
-          )
-      )
-      .addSubcommand((subcommand) =>
-        subcommand
-          .setName("remove")
-          .setDescription("Remove xp from a user.")
-          .addUserOption((option) =>
-            option
-              .setName("target")
-              .setDescription("The user to remove xp from.")
-              .setRequired(true)
-          )
-          .addIntegerOption((option) =>
-            option
-              .setName("amount")
-              .setDescription("The amount of xp to remove.")
-              .setRequired(true)
-          )
-      )
-      .addSubcommand((subcommand) =>
-        subcommand
-          .setName("set")
-          .setDescription("Set a user´s xp.")
-          .addUserOption((option) =>
-            option
-              .setName("target")
-              .setDescription("The user to set xp for.")
-              .setRequired(true)
-          )
-          .addIntegerOption((option) =>
-            option
-              .setName("amount")
-              .setDescription("The amount of xp to set.")
-              .setMinValue(0) // This should be applied here
-              .setRequired(true)
-          )
-      ),
-  ],
+  data: new SlashCommandBuilder()
+    .setName("xp")
+    .setDescription("Adjust a user's xp.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ADMINISTRATOR)
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("add")
+        .setDescription("Add xp to a user.")
+        .addUserOption((option) =>
+          option
+            .setName("target")
+            .setDescription("The user to add xp to.")
+            .setRequired(true)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("amount")
+            .setDescription("The amount of xp to add.")
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("remove")
+        .setDescription("Remove xp from a user.")
+        .addUserOption((option) =>
+          option
+            .setName("target")
+            .setDescription("The user to remove xp from.")
+            .setRequired(true)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("amount")
+            .setDescription("The amount of xp to remove.")
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("set")
+        .setDescription("Set a user's xp.")
+        .addUserOption((option) =>
+          option
+            .setName("target")
+            .setDescription("The user to set xp for.")
+            .setRequired(true)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("amount")
+            .setDescription("The amount of xp to set.")
+            .setMinValue(0)
+            .setRequired(true)
+        )
+    ),
 
   async execute(interaction) {
     const { options, guildId } = interaction;
@@ -99,9 +96,13 @@ module.exports = {
           break;
       }
     } catch (error) {
-      console.error('Ein Fehler ist aufgetreten:', error);
+      console.error("Ein Fehler ist aufgetreten:", error);
+      embed
+        .setDescription("There was an error executing this command.")
+        .setColor("RED")
+        .setTimestamp();
     }
 
-    interaction.reply({ embed, ephemeral: true });
+    interaction.reply({ embeds: [embed], ephemeral: true });
   },
 };
