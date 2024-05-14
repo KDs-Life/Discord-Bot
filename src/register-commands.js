@@ -3,12 +3,7 @@ const { REST, Routes } = require("discord.js");
 
 const xpCommand = require("./Levels/xp.js");
 
-const commands = [
-  {
- 
-  },
-  xpCommand.data,
-];
+const commands = [{}, xpCommand.data];
 
 const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
